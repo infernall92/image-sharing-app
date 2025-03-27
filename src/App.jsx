@@ -1,8 +1,12 @@
+import HeroScreen from "./components/HeroScreen";
+import Navigation from "./components/Navigation";
+
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold">HOME</h1>
-    </>
+    <div className="">
+      <Navigation />
+      <HeroScreen />
+    </div>
   );
 }
 
