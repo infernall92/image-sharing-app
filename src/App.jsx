@@ -1,11 +1,14 @@
 import HeroScreen from "./components/HeroScreen";
-import Navigation from "./components/Navigation";
+import Header from "./components/Header";
+import { Route, Routes } from "react-router";
 
 function App() {
   return (
-    <div className="">
-      <Navigation />
-      <HeroScreen />
+    <div className="bg-[#F2EFE7]">
+      <Header />
+      <Routes>
+        <Route path="/" element={<HeroScreen />} />
+      </Routes>
     </div>
   );
 }

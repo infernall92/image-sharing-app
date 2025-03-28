@@ -4,3 +4,22 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+.bg-custom {
+  background-color: #F2EFE7;
+}
+
+.bg-nav {
+  background-color: #006A71;
+}
+
+.button-color {
+  background-color: #9ACBD0;
+}
+
+.border-color-custom {
+  color: #48A6A7;
+}
+
+.text-custom {
+  color: #006A71;
+}

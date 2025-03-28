@@ -1,8 +1,8 @@
 import Button from "./Button";
 
-export default function Navigation() {
+export default function Header() {
   return (
-    <div className="absolute flex w-full justify-between p-3 bg-neutral-950">
+    <div className="absolute flex w-full justify-between p-3 bg-nav">
       <div className="flex gap-3">
         <p className="font-bold text-3xl text-white">LOGO</p>
         <p className="font-bold text-white">ACME</p>
