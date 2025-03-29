@@ -9,17 +9,18 @@ export default function Header() {
         <p className="font-bold text-white">ACME</p>
       </Link>
       <div className="flex gap-3">
-        <Link to="/images">
+        <Link to="/catalog">
           <Button onClick={""}>All images</Button>
         </Link>
-        <Link to="">
+        {/* <Link to="">
           <Button onClick={""}>button 2</Button>
         </Link>
         <Link to="">
           <Button onClick={""}>button 3</Button>
-        </Link>
+        </Link> */}
       </div>
       <div className="flex gap-3">
+        {/* ----------logged in user---------- */}
         <div id="user" className="flex gap-3">
           <Link to="/image-upload">
             <Button onClick={""}>Upload</Button>
@@ -28,6 +29,7 @@ export default function Header() {
             <Button onClick={""}>Logout</Button>
           </Link>
         </div>
+        {/* ----------guest user---------- */}
         <div id="guest" className="flex gap-3">
           <Link to="/login">
             <Button onClick={""}>Login</Button>
