@@ -4,6 +4,9 @@ import { Route, Routes } from "react-router";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import ImageUpload from "./components/image-upload/ImageUpload";
+import ImageEdit from "./components/image-edit/ImageEdit";
+import ImageDetails from "./components/image-details/ImageDetails";
+import ImageCatalog from "./components/image-catalog/ImageCatalog";
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/image-upload" element={<ImageUpload />} />
+        <Route path="/image-edit" element={<ImageEdit />} />
+        <Route path="/image-details" element={<ImageDetails />} />
+        <Route path="/catalog" element={<ImageCatalog />} />
       </Routes>
     </div>
   );
