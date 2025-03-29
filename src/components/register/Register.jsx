@@ -2,7 +2,7 @@ export default function Register() {
   return (
     <section id="register" className="mt-10 flex justify-center h-screen">
       <form
-        id="login"
+        id="register"
         className="bg-[#9ACBD0] w-1/3 h-2/3 flex flex-col p-10 justify-center items-center rounded-3xl"
       >
         <div className="flex flex-col gap-3">
