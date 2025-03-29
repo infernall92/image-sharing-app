@@ -1,6 +1,8 @@
-import HeroScreen from "./components/HeroScreen";
-import Header from "./components/Header";
+import HeroScreen from "./components/home/HeroScreen";
+import Header from "./components/header/Header";
 import { Route, Routes } from "react-router";
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
 
 function App() {
   return (
@@ -8,6 +10,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HeroScreen />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
