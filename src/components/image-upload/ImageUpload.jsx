@@ -1,8 +1,22 @@
+import { useNavigate } from "react-router";
+import imageService from "../../services/imageService";
+
 export default function ImageUpload() {
+  const navigate = useNavigate();
+
+  const submitAction = async (formData) => {
+    const imageData = Object.fromEntries(formData);
+
+    await imageService.upload(imageData);
+
+    navigate("/catalog");
+  };
+
   return (
     <section id="upload-page" className="mt-10 flex justify-center h-screen">
       <form
         id="upload"
+        action={submitAction}
         className="bg-[#9ACBD0] w-1/3 h-2/3 flex flex-col p-10 justify-center items-center rounded-3xl"
       >
         <div className="flex flex-col gap-2 w-full">
