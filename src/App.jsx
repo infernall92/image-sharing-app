@@ -16,9 +16,9 @@ function App() {
         <Route path="/" element={<HeroScreen />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/image-upload" element={<ImageUpload />} />
-        <Route path="/image-edit" element={<ImageEdit />} />
-        <Route path="/image-details" element={<ImageDetails />} />
+        <Route path="/upload" element={<ImageUpload />} />
+        <Route path="/image/edit" element={<ImageEdit />} />
+        <Route path="/image/details" element={<ImageDetails />} />
         <Route path="/catalog" element={<ImageCatalog />} />
       </Routes>
     </div>

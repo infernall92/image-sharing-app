@@ -22,7 +22,7 @@ export default function Header() {
       <div className="flex gap-3">
         {/* ----------logged in user---------- */}
         <div id="user" className="flex gap-3">
-          <Link to="/image-upload">
+          <Link to="/upload">
             <Button onClick={""}>Upload</Button>
           </Link>
           <Link to="/logout">
