@@ -9,7 +9,7 @@ export default function ImageUpload() {
 
     await imageService.upload(imageData);
 
-    navigate("/catalog");
+    navigate("/images");
   };
 
   return (

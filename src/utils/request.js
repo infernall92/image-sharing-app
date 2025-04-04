@@ -1,24 +1,32 @@
 export const request = async (method, url, data) => {
   let options = {};
 
-  if (method != "GET") {
-    options = {
-      method,
-    };
+  if (method !== "GET") {
+    options.method = method;
   }
 
   if (data) {
     options = {
       ...options,
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     };
   }
 
   const response = await fetch(url, options);
-  const result = response.json();
+
+  // Defensive parsing
+  let result;
+  try {
+    // Some JSON stores return `null` or empty response with 200
+    const text = await response.text();
+    result = text ? JSON.parse(text) : null;
+  } catch (err) {
+    console.error("Failed to parse JSON:", err);
+    result = null;
+  }
 
   return result;
 };
