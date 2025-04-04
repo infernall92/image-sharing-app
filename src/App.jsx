@@ -18,8 +18,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/upload" element={<ImageUpload />} />
         <Route path="/image/edit" element={<ImageEdit />} />
-        <Route path="/image/details" element={<ImageDetails />} />
-        <Route path="/catalog" element={<ImageCatalog />} />
+        <Route path="/images/:imageId/details" element={<ImageDetails />} />
+        <Route path="/images" element={<ImageCatalog />} />
       </Routes>
     </div>
   );

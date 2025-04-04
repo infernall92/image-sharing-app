@@ -2,7 +2,7 @@ import Button from "../button/Button";
 
 export default function ImageDetails() {
   return (
-    <section id="image-details" className="">
+    <section id="image-details" className="text-black">
       <div className="">
         <div>
           <h1 className="">Image Details</h1>

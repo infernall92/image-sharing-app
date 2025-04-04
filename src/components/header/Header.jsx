@@ -9,7 +9,7 @@ export default function Header() {
         <p className="font-bold text-white">ACME</p>
       </Link>
       <div className="flex gap-3">
-        <Link to="/catalog">
+        <Link to="/images">
           <Button onClick={""}>All images</Button>
         </Link>
         {/* <Link to="">

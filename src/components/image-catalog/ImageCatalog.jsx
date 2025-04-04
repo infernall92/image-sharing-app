@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import imageService from "../../services/imageService";
+import ImageCatalogItem from "../image-catalog-item/ImageCatalogItem";
 
 export default function ImageCatalog() {
   const [images, setImages] = useState([]);
@@ -16,12 +17,11 @@ export default function ImageCatalog() {
       {!images ? (
         <div>NO IMAGES ADDED YET</div>
       ) : (
-        images.map((image) => (
-          <div key={image._id} className="max-w-56">
-            <p>{image.title}</p>
-            <img src={image.url} />
-          </div>
-        ))
+        <div className="flex text-center items-center justify-center gap-5">
+          {images.map((image) => (
+            <ImageCatalogItem key={image._id} {...image} />
+          ))}
+        </div>
       )}
     </section>
   );

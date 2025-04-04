@@ -8,6 +8,9 @@ export default {
     const images = Object.values(result);
     return images;
   },
+  getImage(imageId) {
+    return request.get(`${baseUrl}/${imageId}`);
+  },
   upload(imageData) {
     return request.post(baseUrl, imageData);
   },
