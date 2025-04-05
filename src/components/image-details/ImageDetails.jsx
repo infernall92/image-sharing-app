@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Button from "../button/Button";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import imageService from "../../services/imageService";
 
 export default function ImageDetails() {
+  const navigate = useNavigate();
   const [image, setImage] = useState({});
   const { imageId } = useParams();
 
@@ -13,7 +14,19 @@ export default function ImageDetails() {
       setImage(result);
     })();
   }, [imageId]);
-  image;
+
+  const handleDeleteImage = async () => {
+    const confirmed = confirm(`Deleting image ${image.title}. Proceed ?`);
+
+    if (confirmed) {
+      await imageService.delete(imageId);
+
+      navigate("/images");
+      console.log(`Image with title ${image.title} deleted successfully !`);
+    } else {
+      return;
+    }
+  };
 
   return (
     <section id="image-details" className="text-[#006A71]">
@@ -36,7 +49,7 @@ export default function ImageDetails() {
         {/* for owners add buttons edit and delete */}
         <div className="flex gap-5">
           <Button onClick={() => {}}>Edit</Button>
-          <Button onClick={() => {}}>Delete</Button>
+          <Button onClick={handleDeleteImage}>Delete</Button>
         </div>
       </div>
     </section>

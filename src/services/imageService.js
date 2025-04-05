@@ -14,4 +14,7 @@ export default {
   upload(imageData) {
     return request.post(baseUrl, imageData);
   },
+  delete(imageId) {
+    return request.delete(`${baseUrl}/${imageId}`);
+  },
 };
