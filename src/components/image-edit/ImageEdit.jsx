@@ -11,10 +11,17 @@ export default function ImageEdit() {
   useEffect(() => {
     imageService.getImage(imageId).then(setImage);
   }, [imageId]);
+
+  const formAction = async (formData) => {
+    const imageData = Object.fromEntries(formData);
+    await imageService.edit(imageId, imageData);
+    navigate(`/images/${imageId}/details`);
+  };
   return (
     <section id="edit-page" className="mt-10 flex justify-center h-screen">
       <form
         id="edit"
+        action={formAction}
         className="bg-[#9ACBD0] w-1/3 h-2/3 flex flex-col p-10 justify-center items-center rounded-3xl"
       >
         <div className="flex flex-col gap-2 w-full">
