@@ -1,4 +1,16 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import imageService from "../../services/imageService";
+
 export default function ImageEdit() {
+  const navigate = useNavigate();
+  const [image, setImage] = useState({});
+
+  const { imageId } = useParams();
+
+  useEffect(() => {
+    imageService.getImage(imageId).then(setImage);
+  }, [imageId]);
   return (
     <section id="edit-page" className="mt-10 flex justify-center h-screen">
       <form
@@ -18,6 +30,7 @@ export default function ImageEdit() {
             name="title"
             placeholder="Enter new image title..."
             className="bg-[#F2EFE7] border border-[#006A71] rounded-xl p-3"
+            defaultValue={image.title}
           />
           <label htmlFor="url" className="text-[#006A71]">
             Image url
@@ -28,6 +41,7 @@ export default function ImageEdit() {
             name="url"
             placeholder="Place new image url here..."
             className="bg-[#F2EFE7] border border-[#006A71] rounded-xl p-3"
+            defaultValue={image.url}
           />
           <label htmlFor="description" className="text-[#006A71]">
             Description
@@ -37,6 +51,7 @@ export default function ImageEdit() {
             id="description"
             className="bg-[#F2EFE7] border border-[#006A71] rounded-xl p-3 resize-none h-20 w-full"
             placeholder="New short description here..."
+            defaultValue={image.description}
           />
           <button
             type="submit"

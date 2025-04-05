@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "../button/Button";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import imageService from "../../services/imageService";
 
 export default function ImageDetails() {
@@ -36,7 +36,7 @@ export default function ImageDetails() {
             Image Details
           </h1>
           {/* IMAGE HERE */}
-          <img src={image.url} />
+          <img src={image.url} className="max-w-[600px]" />
           <div className="flex gap-3">
             <span className="font-bold">Title:</span>
             <p className="">{image.title}</p>
@@ -48,7 +48,9 @@ export default function ImageDetails() {
         </div>
         {/* for owners add buttons edit and delete */}
         <div className="flex gap-5">
-          <Button onClick={() => {}}>Edit</Button>
+          <Link to={`/images/${imageId}/edit`}>
+            <Button onClick={() => {}}>Edit</Button>
+          </Link>
           <Button onClick={handleDeleteImage}>Delete</Button>
         </div>
       </div>

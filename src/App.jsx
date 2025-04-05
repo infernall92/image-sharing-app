@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/upload" element={<ImageUpload />} />
-        <Route path="/image/edit" element={<ImageEdit />} />
+        <Route path="/images/:imageId/edit" element={<ImageEdit />} />
         <Route path="/images/:imageId/details" element={<ImageDetails />} />
         <Route path="/images" element={<ImageCatalog />} />
       </Routes>
