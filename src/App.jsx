@@ -10,12 +10,10 @@ import ImageCatalog from "./components/image-catalog/ImageCatalog";
 import { useState } from "react";
 
 function App() {
-  const [email, setEmail] = useState();
+  const [authData, setAuthData] = useState({});
 
   const handleUserLogin = (authData) => {
-    console.log(authData);
-
-    setEmail(authData.email);
+    setAuthData(authData);
   };
 
   return (
@@ -27,7 +25,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/upload" element={<ImageUpload />} />
         <Route path="/images/:imageId/edit" element={<ImageEdit />} />
-        <Route path="/images/:imageId/details" element={<ImageDetails />} />
+        <Route
+          path="/images/:imageId/details"
+          element={<ImageDetails email={authData.email} />}
+        />
         <Route path="/images" element={<ImageCatalog />} />
       </Routes>
     </div>
