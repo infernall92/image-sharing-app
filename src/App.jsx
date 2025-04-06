@@ -7,14 +7,16 @@ import ImageUpload from "./components/image-upload/ImageUpload";
 import ImageEdit from "./components/image-edit/ImageEdit";
 import ImageDetails from "./components/image-details/ImageDetails";
 import ImageCatalog from "./components/image-catalog/ImageCatalog";
+import { useState } from "react";
 
 function App() {
+  const [email, setEmail] = useState();
   return (
     <div className="bg-[#F2EFE7]">
       <Header />
       <Routes>
         <Route path="/" element={<HeroScreen />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login onLogin={setEmail} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/upload" element={<ImageUpload />} />
         <Route path="/images/:imageId/edit" element={<ImageEdit />} />

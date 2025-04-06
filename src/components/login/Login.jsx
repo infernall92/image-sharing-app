@@ -1,8 +1,31 @@
-export default function Login() {
+import { useActionState } from "react";
+import { Link, useNavigate } from "react-router";
+
+export default function Login({ onLogin }) {
+  const navigate = useNavigate();
+
+  const loginHandler = (prevState, formData) => {
+    const values = Object.fromEntries(formData);
+
+    onLogin(values.email);
+
+    navigate("/images");
+
+    return values;
+  };
+
+  const [values, loginAction, isPending] = useActionState(loginHandler, {
+    email: "",
+    password: "",
+  });
+
+  console.log(values);
+
   return (
     <section id="login" className="mt-10 flex justify-center h-screen">
       <form
         id="login"
+        action={loginAction}
         className="bg-[#9ACBD0] w-1/3 h-2/3 flex flex-col p-10 justify-center items-center rounded-3xl"
       >
         <div className="flex flex-col gap-3">
@@ -34,14 +57,15 @@ export default function Login() {
             <input
               type="submit"
               value="Login"
+              disabled={isPending}
               className="text-[#F2EFE7] bg-[#48A6A7] rounded-xl hover:bg-[#006A71] p-3"
             />
             <p className="text-[#006A71]">
               You don't have an account ? Click{" "}
               <span>
-                <a href="/register" className="font-bold">
+                <Link to="/register" className="font-bold">
                   here
-                </a>
+                </Link>
               </span>
             </p>
           </div>
