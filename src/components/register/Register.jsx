@@ -1,8 +1,33 @@
+import { Link, useNavigate } from "react-router";
+import { useLogin, useRegister } from "../../api/authApi";
+
 export default function Register() {
+  const { register } = useRegister();
+  const { login } = useLogin();
+  const navigate = useNavigate();
+
+  const handleRegisterUser = async (formData) => {
+    const { email, password } = Object.fromEntries(formData);
+
+    const confirmPassword = formData.get("confirm-password");
+
+    if (confirmPassword !== password) {
+      console.log("Password missmatch");
+      return;
+    }
+
+    const authData = await register(email, password);
+
+    login(authData.email, authData.password);
+
+    navigate("/");
+  };
+
   return (
     <section id="register" className="mt-10 flex justify-center h-screen">
       <form
         id="register"
+        action={handleRegisterUser}
         className="bg-[#9ACBD0] w-1/3 h-2/3 flex flex-col p-10 justify-center items-center rounded-3xl"
       >
         <div className="flex flex-col gap-3">
@@ -50,9 +75,9 @@ export default function Register() {
             <p className="text-[#006A71]">
               You already have an account ? Click{" "}
               <span>
-                <a href="/login" className="font-bold">
+                <Link to="/login" className="font-bold">
                   here
-                </a>
+                </Link>
               </span>
             </p>
           </div>

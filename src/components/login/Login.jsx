@@ -4,7 +4,7 @@ import { useLogin } from "../../api/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../features/auth/authSlice";
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -23,8 +23,6 @@ export default function Login({ onLogin }) {
         accessToken: authData.accessToken,
       })
     );
-
-    // onLogin(authData);
 
     navigate("/images");
   };

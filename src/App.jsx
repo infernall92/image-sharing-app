@@ -7,16 +7,9 @@ import ImageUpload from "./components/image-upload/ImageUpload";
 import ImageEdit from "./components/image-edit/ImageEdit";
 import ImageDetails from "./components/image-details/ImageDetails";
 import ImageCatalog from "./components/image-catalog/ImageCatalog";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 function App() {
-  // const [authData, setAuthData] = useState({});
-
-  // const handleUserLogin = (authData) => {
-  //   setAuthData(authData);
-  // };
-
   const userData = useSelector((state) => state.auth);
   console.log(userData);
 
