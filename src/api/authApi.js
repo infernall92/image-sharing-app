@@ -1,6 +1,8 @@
 // import { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import request from "../utils/request";
+import { useEffect } from "react";
+import { clearUser } from "../features/auth/authSlice";
 
 const baseUrl = "http://localhost:3030/users";
 
@@ -38,14 +40,21 @@ export const useRegister = () => {
 };
 
 export const useLogout = () => {
+  const dispatch = useDispatch();
   const { accessToken } = useSelector((state) => state.auth);
 
-  const options = {
-    headers: {
-      "X-Authorization": accessToken,
-    },
-  };
-  const logout = () => request.get(`${baseUrl}/logout`, null, options);
+  useEffect(() => {
+    if (!accessToken) return;
 
-  return logout;
+    const options = {
+      headers: {
+        "X-Authorization": accessToken,
+      },
+    };
+    request.get(`${baseUrl}/logout`, null, options).then(dispatch(clearUser()));
+  }, [accessToken, dispatch]);
+
+  return {
+    isLoggedOut: !!accessToken,
+  };
 };
