@@ -1,4 +1,5 @@
 // import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import request from "../utils/request";
 
 const baseUrl = "http://localhost:3030/users";
@@ -34,4 +35,17 @@ export const useRegister = () => {
   return {
     register,
   };
+};
+
+export const useLogout = () => {
+  const { accessToken } = useSelector((state) => state.auth);
+
+  const options = {
+    headers: {
+      "X-Authorization": accessToken,
+    },
+  };
+  const logout = () => request.get(`${baseUrl}/logout`, null, options);
+
+  return logout;
 };

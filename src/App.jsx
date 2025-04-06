@@ -8,6 +8,7 @@ import ImageEdit from "./components/image-edit/ImageEdit";
 import ImageDetails from "./components/image-details/ImageDetails";
 import ImageCatalog from "./components/image-catalog/ImageCatalog";
 import { useSelector } from "react-redux";
+import Logout from "./components/logout/logout";
 
 function App() {
   const userData = useSelector((state) => state.auth);
@@ -24,6 +25,7 @@ function App() {
         <Route path="/images/:imageId/edit" element={<ImageEdit />} />
         <Route path="/images/:imageId/details" element={<ImageDetails />} />
         <Route path="/images" element={<ImageCatalog />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </div>
   );
