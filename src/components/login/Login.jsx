@@ -1,9 +1,13 @@
 import { useActionState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLogin } from "../../api/authApi";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/auth/authSlice";
 
 export default function Login({ onLogin }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { login } = useLogin();
 
   const loginHandler = async (_, formData) => {
@@ -11,7 +15,16 @@ export default function Login({ onLogin }) {
 
     const authData = await login(values.email, values.password);
 
-    onLogin(authData);
+    dispatch(
+      setUser({
+        _id: authData._id,
+        email: authData.email,
+        username: authData.username,
+        accessToken: authData.accessToken,
+      })
+    );
+
+    // onLogin(authData);
 
     navigate("/images");
   };
