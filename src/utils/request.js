@@ -1,6 +1,4 @@
-export const request = async (method, url, data) => {
-  let options = {};
-
+export const request = async (method, url, data, options = {}) => {
   if (method !== "GET") {
     options.method = method;
   }
@@ -17,10 +15,8 @@ export const request = async (method, url, data) => {
 
   const response = await fetch(url, options);
 
-  // Defensive parsing
   let result;
   try {
-    // Some JSON stores return `null` or empty response with 200
     const text = await response.text();
     result = text ? JSON.parse(text) : null;
   } catch (err) {

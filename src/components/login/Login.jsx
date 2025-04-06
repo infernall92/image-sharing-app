@@ -1,15 +1,19 @@
 import { useActionState } from "react";
 import { Link, useNavigate } from "react-router";
+import { useLogin } from "../../api/authApi";
 
 export default function Login({ onLogin }) {
   const navigate = useNavigate();
+  const { login } = useLogin();
 
-  const loginHandler = (prevState, formData) => {
+  const loginHandler = async (prevState, formData) => {
     const values = Object.fromEntries(formData);
 
-    onLogin(values.email);
+    const authData = await login(values.email, values.password);
 
-    navigate("/images");
+    onLogin(authData);
+
+    // navigate("/images");
 
     return values;
   };
@@ -18,8 +22,6 @@ export default function Login({ onLogin }) {
     email: "",
     password: "",
   });
-
-  console.log(values);
 
   return (
     <section id="login" className="mt-10 flex justify-center h-screen">

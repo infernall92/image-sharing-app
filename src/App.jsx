@@ -11,12 +11,19 @@ import { useState } from "react";
 
 function App() {
   const [email, setEmail] = useState();
+
+  const handleUserLogin = (authData) => {
+    console.log(authData);
+
+    setEmail(authData.email);
+  };
+
   return (
     <div className="bg-[#F2EFE7]">
       <Header />
       <Routes>
         <Route path="/" element={<HeroScreen />} />
-        <Route path="/login" element={<Login onLogin={setEmail} />} />
+        <Route path="/login" element={<Login onLogin={handleUserLogin} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/upload" element={<ImageUpload />} />
         <Route path="/images/:imageId/edit" element={<ImageEdit />} />
