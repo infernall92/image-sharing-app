@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router";
-import imageService from "../../services/imageService";
+import { useUploadImage } from "../../api/imageApi";
 
 export default function ImageUpload() {
   const navigate = useNavigate();
 
+  const { upload } = useUploadImage();
+
   const submitAction = async (formData) => {
     const imageData = Object.fromEntries(formData);
 
-    await imageService.upload(imageData);
+    await upload(imageData);
 
     navigate("/images");
   };
