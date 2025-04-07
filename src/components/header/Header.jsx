@@ -1,7 +1,12 @@
 import Button from "../button/Button";
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const { email } = useSelector((state) => state.auth);
+  const nickname = email.split("@")[0];
+  const capitalizedNickname =
+    nickname.charAt(0).toUpperCase() + nickname.slice(1);
   return (
     <div className="flex w-full justify-between p-3 bg-nav">
       <Link to="/" className="flex gap-3">
@@ -20,24 +25,28 @@ export default function Header() {
         </Link> */}
       </div>
       <div className="flex gap-3">
-        {/* ----------logged in user---------- */}
-        <div id="user" className="flex gap-3">
-          <Link to="/upload">
-            <Button onClick={""}>Upload</Button>
-          </Link>
-          <Link to="/logout">
-            <Button onClick={""}>Logout</Button>
-          </Link>
-        </div>
-        {/* ----------guest user---------- */}
-        <div id="guest" className="flex gap-3">
-          <Link to="/login">
-            <Button onClick={""}>Login</Button>
-          </Link>
-          <Link to="/register">
-            <Button onClick={""}>Sign up</Button>
-          </Link>
-        </div>
+        {email ? (
+          <div id="user" className="flex gap-3">
+            <Link to="/upload">
+              <Button onClick={() => {}}>Upload</Button>
+            </Link>
+            <Link to="/logout">
+              <Button onClick={() => {}}>Logout</Button>
+            </Link>
+            <span className="text-lg text-white  flex justify-center items-center font-bold">
+              {capitalizedNickname}
+            </span>
+          </div>
+        ) : (
+          <div id="guest" className="flex gap-3">
+            <Link to="/login">
+              <Button onClick={() => {}}>Login</Button>
+            </Link>
+            <Link to="/register">
+              <Button onClick={() => {}}>Sign up</Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
