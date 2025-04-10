@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import imageService from "../../services/imageService";
+import { useEditImage, useGetImage } from "../../api/imageApi";
 
 export default function ImageEdit() {
   const navigate = useNavigate();
-  const [image, setImage] = useState({});
-
   const { imageId } = useParams();
-
-  useEffect(() => {
-    imageService.getImage(imageId).then(setImage);
-  }, [imageId]);
+  const { image } = useGetImage(imageId);
+  const { edit } = useEditImage();
 
   const formAction = async (formData) => {
     const imageData = Object.fromEntries(formData);
-    await imageService.edit(imageId, imageData);
+
+    await edit(imageId, imageData);
+
     navigate(`/images/${imageId}/details`);
   };
   return (

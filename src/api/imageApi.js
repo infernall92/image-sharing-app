@@ -1,28 +1,8 @@
-import { useSelector } from "react-redux";
 import request from "../utils/request";
 import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const baseUrl = "http://localhost:3030/data/images";
-
-export default {
-  async getAll() {
-    const result = await request.get(baseUrl);
-    const images = Object.values(result);
-    return images;
-  },
-  getImage(imageId) {
-    return request.get(`${baseUrl}/${imageId}`);
-  },
-  upload(imageData) {
-    return request.post(baseUrl, imageData);
-  },
-  edit(imageId, imageData) {
-    return request.put(`${baseUrl}/${imageId}`, { ...imageData, _id: imageId });
-  },
-  delete(imageId) {
-    return request.delete(`${baseUrl}/${imageId}`);
-  },
-};
 
 export const useAllImages = () => {
   const [images, setImages] = useState([]);
@@ -33,22 +13,6 @@ export const useAllImages = () => {
   return { images };
 };
 
-export const useUploadImage = () => {
-  const { accessToken } = useSelector((state) => state.auth);
-  const options = {
-    headers: {
-      "X-Authorization": accessToken,
-    },
-  };
-  const upload = (imageData) => {
-    return request.post(baseUrl, imageData, options);
-  };
-
-  return {
-    upload,
-  };
-};
-
 export const useGetImage = (imageId) => {
   const [image, setImage] = useState([]);
 
@@ -57,4 +21,34 @@ export const useGetImage = (imageId) => {
   }, [imageId]);
 
   return { image };
+};
+
+export const useUploadImage = () => {
+  const { request } = useAuth();
+  const upload = (imageData) => {
+    return request.post(baseUrl, imageData);
+  };
+
+  return {
+    upload,
+  };
+};
+
+export const useEditImage = () => {
+  const { request } = useAuth();
+
+  const edit = (imageId, imageData) => {
+    return request.put(`${baseUrl}/${imageId}`, { ...imageData, _id: imageId });
+  };
+
+  return { edit };
+};
+
+export const useDeleteImage = () => {
+  const { request } = useAuth();
+
+  const deleteImage = (imageId) => {
+    return request.delete(`${baseUrl}/${imageId}`);
+  };
+  return { deleteImage };
 };

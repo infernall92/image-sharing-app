@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
 import Button from "../button/Button";
 import { Link, useNavigate, useParams } from "react-router";
-import imageService from "../../services/imageService";
-import { useGetImage } from "../../api/imageApi";
+import { useDeleteImage, useGetImage } from "../../api/imageApi";
+import useAuth from "../../hooks/useAuth";
 
 export default function ImageDetails() {
   const navigate = useNavigate();
   const { imageId } = useParams();
-
   const { image } = useGetImage(imageId);
+  const { deleteImage } = useDeleteImage();
+  const { email, _id: userId } = useAuth();
 
   const handleDeleteImage = async () => {
     const confirmed = confirm(`Deleting image ${image.title}. Proceed ?`);
 
     if (confirmed) {
-      await imageService.delete(imageId);
+      deleteImage(imageId);
 
       navigate("/images");
       console.log(`Image with title ${image.title} deleted successfully !`);
@@ -22,6 +22,8 @@ export default function ImageDetails() {
       return;
     }
   };
+
+  const isOwner = userId === image._ownerId;
 
   return (
     <section id="image-details" className="text-[#006A71]">
@@ -42,12 +44,14 @@ export default function ImageDetails() {
           </div>
         </div>
         {/* for owners add buttons edit and delete */}
-        <div className="flex gap-5">
-          <Link to={`/images/${imageId}/edit`}>
-            <Button onClick={() => {}}>Edit</Button>
-          </Link>
-          <Button onClick={handleDeleteImage}>Delete</Button>
-        </div>
+        {isOwner && (
+          <div className="flex gap-5">
+            <Link to={`/images/${imageId}/edit`}>
+              <Button onClick={() => {}}>Edit</Button>
+            </Link>
+            <Button onClick={handleDeleteImage}>Delete</Button>
+          </div>
+        )}
       </div>
     </section>
   );
