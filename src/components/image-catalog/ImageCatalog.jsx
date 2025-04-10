@@ -1,12 +1,8 @@
-import { useEffect, useState } from "react";
-import imageService from "../../services/imageService";
 import ImageCatalogItem from "../image-catalog-item/ImageCatalogItem";
+import { useImages } from "../../api/imageApi";
 
 export default function ImageCatalog() {
-  const [images, setImages] = useState([]);
-  useEffect(() => {
-    imageService.getAll().then(setImages);
-  }, []);
+  const { images } = useImages();
 
   console.log(images);
 

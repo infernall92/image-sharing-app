@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import request from "../utils/request";
+import { useEffect, useState } from "react";
 
 const baseUrl = "http://localhost:3030/data/images";
 
@@ -21,6 +22,15 @@ export default {
   delete(imageId) {
     return request.delete(`${baseUrl}/${imageId}`);
   },
+};
+
+export const useImages = () => {
+  const [images, setImages] = useState([]);
+  useEffect(() => {
+    request.get(baseUrl).then(setImages);
+  }, []);
+
+  return { images };
 };
 
 export const useUploadImage = () => {
