@@ -1,14 +1,16 @@
 import ImageCatalogItem from "../image-catalog-item/ImageCatalogItem";
-import { useImages } from "../../api/imageApi";
+import { useAllImages } from "../../api/imageApi";
 
 export default function ImageCatalog() {
-  const { images } = useImages();
+  const { images } = useAllImages();
 
   console.log(images);
 
   return (
     <section id="image-catalog" className="">
-      <div>ALL IMAGES HERE</div>
+      <h1 className="text-center font-extrabold text-3xl m-3 text-[#006A71]">
+        ALL IMAGES
+      </h1>
       {/* if images missing in catalog render this below */}
       {!images ? (
         <div>NO IMAGES ADDED YET</div>

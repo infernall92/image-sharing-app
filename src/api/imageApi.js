@@ -24,7 +24,7 @@ export default {
   },
 };
 
-export const useImages = () => {
+export const useAllImages = () => {
   const [images, setImages] = useState([]);
   useEffect(() => {
     request.get(baseUrl).then(setImages);
@@ -47,4 +47,14 @@ export const useUploadImage = () => {
   return {
     upload,
   };
+};
+
+export const useGetImage = (imageId) => {
+  const [image, setImage] = useState([]);
+
+  useEffect(() => {
+    request.get(`${baseUrl}/${imageId}`).then(setImage);
+  }, [imageId]);
+
+  return { image };
 };

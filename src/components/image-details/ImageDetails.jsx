@@ -2,18 +2,13 @@ import { useEffect, useState } from "react";
 import Button from "../button/Button";
 import { Link, useNavigate, useParams } from "react-router";
 import imageService from "../../services/imageService";
+import { useGetImage } from "../../api/imageApi";
 
 export default function ImageDetails() {
   const navigate = useNavigate();
-  const [image, setImage] = useState({});
   const { imageId } = useParams();
 
-  useEffect(() => {
-    (async () => {
-      const result = await imageService.getImage(imageId);
-      setImage(result);
-    })();
-  }, [imageId]);
+  const { image } = useGetImage(imageId);
 
   const handleDeleteImage = async () => {
     const confirmed = confirm(`Deleting image ${image.title}. Proceed ?`);
