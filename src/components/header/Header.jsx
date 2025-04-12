@@ -10,19 +10,15 @@ export default function Header() {
   return (
     <div className="flex w-full justify-between p-3 bg-nav">
       <Link to="/" className="flex gap-3">
-        <p className="font-bold text-3xl text-white">LOGO</p>
-        <p className="font-bold text-white">ACME</p>
+        <p className="font-bold text-3xl bg-gradient-to-r from-teal-400 via-cyan-500 to-emerald-400 bg-clip-text text-transparent animate-gradient">
+          IMAGE
+        </p>
+        <p className="font-bold text-white">share</p>
       </Link>
       <div className="flex gap-3">
         <Link to="/images">
-          <Button onClick={""}>All images</Button>
+          <Button onClick={() => {}}>All images</Button>
         </Link>
-        {/* <Link to="">
-          <Button onClick={""}>button 2</Button>
-        </Link>
-        <Link to="">
-          <Button onClick={""}>button 3</Button>
-        </Link> */}
       </div>
       <div className="flex gap-3">
         {email ? (

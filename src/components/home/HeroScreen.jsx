@@ -11,6 +11,9 @@ export default function HeroScreen() {
         {`Hello ${email ? capitalizedNickname : "stranger"}`} !
       </h1>
       <p className="text-2xl font-thin">Came to share some images?</p>
+      {email === "" && (
+        <p className="text-xl font-thin">Please log in to do so</p>
+      )}
     </div>
   );
 }
