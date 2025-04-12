@@ -10,6 +10,7 @@ import ImageCatalog from "./components/image-catalog/ImageCatalog";
 import { useSelector } from "react-redux";
 import Logout from "./components/logout/logout";
 import AuthGuard from "./components/guards/AuthGuard";
+import ImageMyCatalog from "./components/image-my-catalog/ImageMyCatalog";
 
 function App() {
   const userData = useSelector((state) => state.auth);
@@ -26,6 +27,7 @@ function App() {
           <Route path="/upload" element={<ImageUpload />} />
           <Route path="/images/:imageId/edit" element={<ImageEdit />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/my-images" element={<ImageMyCatalog />} />
         </Route>
         <Route path="/images/:imageId/details" element={<ImageDetails />} />
         <Route path="/images" element={<ImageCatalog />} />

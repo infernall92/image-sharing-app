@@ -14,6 +14,7 @@ export default function ImageEdit() {
 
     navigate(`/images/${imageId}/details`);
   };
+
   return (
     <section id="edit-page" className="mt-10 flex justify-center h-screen">
       <form

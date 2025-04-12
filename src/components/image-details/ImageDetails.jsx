@@ -8,7 +8,7 @@ export default function ImageDetails() {
   const { imageId } = useParams();
   const { image } = useGetImage(imageId);
   const { deleteImage } = useDeleteImage();
-  const { email, _id: userId } = useAuth();
+  const { email, userId } = useAuth();
 
   const handleDeleteImage = async () => {
     const confirmed = confirm(`Deleting image ${image.title}. Proceed ?`);
@@ -42,8 +42,11 @@ export default function ImageDetails() {
             <span className="font-bold">Description:</span>
             <p className="">{image.description}</p>
           </div>
+          <div className="flex gap-3">
+            <span className="text-sm font-thin">Uploaded by:</span>
+            <p className="text-sm">{image._ownerId}</p>
+          </div>
         </div>
-        {/* for owners add buttons edit and delete */}
         {isOwner && (
           <div className="flex gap-5">
             <Link to={`/images/${imageId}/edit`}>

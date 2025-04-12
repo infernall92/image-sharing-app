@@ -27,6 +27,9 @@ export default function Header() {
       <div className="flex gap-3">
         {email ? (
           <div id="user" className="flex gap-3">
+            <Link to="/my-images">
+              <Button onClick={() => {}}>My Images</Button>
+            </Link>
             <Link to="/upload">
               <Button onClick={() => {}}>Upload</Button>
             </Link>
