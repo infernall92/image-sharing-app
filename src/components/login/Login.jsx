@@ -24,7 +24,7 @@ export default function Login() {
       })
     );
 
-    navigate("/images");
+    navigate("/");
   };
 
   const [_, loginAction, isPending] = useActionState(loginHandler, {
